@@ -42,7 +42,17 @@ int main()
     int second  = local.tm_sec;
 
     // Open Stream
-    std::ofstream outfile(filename); // creating out object of name(<Param>)
+    std:: fstream outfile; // creating out object of name(<Param>)
+    // opening modes:
+    // out (write),
+    // in (read),
+    // app (move cursor to start file, and prev output to end of file),
+    // ate (move cursor to end file, and keep the prev output on origin),
+    // trunc (truncate if already exist | start fresh)
+
+    // in this case we want to write and append at end
+    //
+    outfile.open(filename, std::ios::out|std::ios::app);
 
     // Write to a file
     outfile << '['
@@ -51,7 +61,7 @@ int main()
              << std::setw(2) << std::setfill('0') << day << ' '
              << std::setw(2) << std::setfill('0') << hour << ':'
              << std::setw(2) << std::setfill('0') << minute << ':'
-             << std::setw(2) << std::setfill('0') << second << "] ";
+             << std::setw(2) << std::setfill('0') << second << "]\n";
 
     // close file
     outfile.close();
